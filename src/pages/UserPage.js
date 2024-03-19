@@ -1,39 +1,42 @@
-import { useEffect, useState } from "react"
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-export default function UserPage() {
+function Users() {
   const [users, setUsers] = useState([])
+
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users/")
+    fetch('https://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
       .then(data => setUsers(data))
-      .catch(err => console.log(err))
   }, [])
+
   return (
-    <div className="container py-4">
-      <table className="table">
+    <div className="py-4 px-5 mb-4">
+      <Link to="/" className="btn btn-success mb-3" role="button">Back to Home</Link>
+      <table className="table table-striped w-auto">
         <thead className="table-dark">
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Username</th>
-            <th scope="col">Email</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="user-data">
           {
-            users.map((el, i) => {
-              return (
-                <tr key={i}>
-                  <th scope="row">{el.id}</th>
-                  <td>{el.name}</td>
-                  <td>{el.username}</td>
-                  <td>{el.email}</td>
-                </tr>
-              )
-            })
+            users.map((user, idx) => (
+              <tr key={idx}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+              </tr>
+            ))
           }
         </tbody>
       </table>
     </div>
   )
 }
+
+export default Users
