@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router';
-import LandingPage from './pages/LandingPage';
-import SamplePage from './pages/SamplePage';
+import HomePage from './pages/HomePage';
+import UserPage from './pages/UserPage';
 
 function App() {
   return (
     <Routes>
-      <Route Component={LandingPage} path='/' />
-      <Route Component={SamplePage} path='/sample' />
+      <Route Component={HomePage} path='/' />
+      <Route Component={UserPage} path='/users' />
     </Routes>
   );
 }
